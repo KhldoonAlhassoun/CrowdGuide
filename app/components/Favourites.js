@@ -23,7 +23,7 @@ class Favorits extends React.Component {
 								style={styles.avatarIcon}
 								{...props}
 								icon="heart"
-								color="black"
+								color="red"
 							/>
 						)}
 					></Card.Title>
@@ -43,7 +43,7 @@ class Favorits extends React.Component {
 								style={styles.avatarIcon}
 								{...props}
 								icon="heart"
-								color="black"
+								color="tomato"
 							/>
 						)}
 					></Card.Title>
@@ -63,7 +63,7 @@ class Favorits extends React.Component {
 								style={styles.avatarIcon}
 								{...props}
 								icon="heart"
-								color="black"
+								color="tomato"
 							/>
 						)}
 					></Card.Title>
@@ -83,7 +83,7 @@ class Favorits extends React.Component {
 								style={styles.avatarIcon}
 								{...props}
 								icon="heart"
-								color="black"
+								color="tomato"
 							/>
 						)}
 					></Card.Title>
@@ -104,7 +104,7 @@ class Favorits extends React.Component {
 								style={styles.avatarIcon}
 								{...props}
 								icon="heart"
-								color="black"
+								color="tomato"
 							/>
 						)}
 					></Card.Title>
