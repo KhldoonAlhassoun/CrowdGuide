@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import Markers from "./Markers";
+import SearchBar from "./SearchBar"
 import UseTracking from "./UseTracking";
 
 const Explore = () => {
