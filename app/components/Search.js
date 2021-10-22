@@ -3,49 +3,39 @@
 import React, { useState, useEffect } from 'react';
 import { SearchBar } from 'react-native-elements';
 import { Text, View, StyleSheet, Button, SafeAreaView, FlatList } from 'react-native';
-
-export default function AppBar() {
-
+ 
+export default function Search() {
+ 
   const [search, setSearch] = useState('');
-
-  const updateSearch = (text) => {
-    this.setSearch({text});
-  }
-
+  //Get locations near the user to be added to search tips
+  const [nearbyLocationsList, setNearbyLocationsList] = useState();
+ 
   return (
     <SafeAreaView style={{flex:1}} >
       <View style={styles.container}>
         <SearchBar        
-            round
             searchIcon={{ size: 24 }}
-            onChangeText={(text) => updateSearch(text)}
-            onClear={(text) => updateSearch('')}
+            onChangeText={(text) => setSearch(text)}
+            onClear={(text) => setSearch('')}
             placeholder={"Search location..."}
             value={search}
             platform={"ios"}
             />
       </View>
     </SafeAreaView>
-
+ 
   );
 }
-
+ 
 const styles = StyleSheet.create({
   container: {
-    //alignItems: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
-    padding: 24,
-    backgroundColor: 'white'
+    padding: 4,
+    backgroundColor: 'white',
+    
   },
-  paragraph: {
-    margin: 24,
-    marginTop: 0,
-    fontSize: 14,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  logo: {
-    height: 128,
-    width: 128,
-  }
 });
+ 
+ 
+
