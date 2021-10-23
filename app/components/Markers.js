@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import MapView, { Marker, ProviderPropType } from "react-native-maps";
+import Search from "./Search";
 
 const { width, height } = Dimensions.get("window");
 
@@ -69,6 +70,7 @@ class Markers extends React.Component {
 						/>
 					))}
 				</MapView>
+				<Search />
 				<View style={styles.buttonContainer}>
 					<TouchableOpacity
 						onPress={() => this.setState({ markers: [] })}

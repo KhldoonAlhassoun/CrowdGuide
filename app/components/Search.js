@@ -35,7 +35,7 @@ function SearchBar() {
 		</SafeAreaView>
 	);
 }
-
+ 
 const styles = StyleSheet.create({
 	container: {
 		//alignItems: 'center',
