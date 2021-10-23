@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
-import Markers from "./Markers";
-import SearchBar from "./SearchBar"
-import UseTracking from "./UseTracking";
+import Markers from "../components/Markers";
+import UseTracking from "../components/UseTracking";
 
-const Explore = () => {
+const ExploreScreen = () => {
 	return (
 		<View style={styles.container}>
 			<Markers />
@@ -24,4 +23,4 @@ const styles = StyleSheet.create({
 		height: Dimensions.get("window").height,
 	},
 });
-export default Explore;
+export default ExploreScreen;

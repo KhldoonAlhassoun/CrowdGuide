@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import { View, Button, Text, Modal} from 'react-native'
 class App extends React.Component {
 constructor()
@@ -33,3 +33,4 @@ constructor()
 }
 
 export default App;
+ */

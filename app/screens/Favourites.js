@@ -9,7 +9,7 @@ import {
 } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
-class Favorits extends React.Component {
+class Favourites extends React.Component {
 	render() {
 		return (
 			<View>
@@ -128,4 +128,4 @@ const styles = StyleSheet.create({
 		marginLeft: 55,
 	},
 });
-export default Favorits;
+export default Favourites;
