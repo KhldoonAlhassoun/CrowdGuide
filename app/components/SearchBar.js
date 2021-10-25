@@ -1,6 +1,7 @@
 /* //import { StatusBar } from "expo-status-bar";
 // import React in our code
 import React, { useState, useEffect } from "react";
+import { SearchBar } from "react-native-elements";
 import {
 	Text,
 	View,

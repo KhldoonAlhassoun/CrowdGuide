@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import Markers from "../components/Markers";
-import UseTracking from "../components/UseTracking";
 
 const ExploreScreen = () => {
 	return (

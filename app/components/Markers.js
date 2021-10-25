@@ -70,7 +70,7 @@ class Markers extends React.Component {
 						/>
 					))}
 				</MapView>
-				<Search />
+				{/* <Search /> */}
 				<View style={styles.buttonContainer}>
 					<TouchableOpacity
 						onPress={() => this.setState({ markers: [] })}

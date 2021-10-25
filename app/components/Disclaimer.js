@@ -1,6 +1,6 @@
 /* import React from 'react'
 import { View, Button, Text, Modal} from 'react-native'
-class App extends React.Component {
+class Disclaimer extends React.Component {
 constructor()
 {
   super();

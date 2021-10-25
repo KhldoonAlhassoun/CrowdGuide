@@ -1,164 +1,35 @@
-/* import React, { Component } from "react";
-import { Alert } from "react-native";
-import BackgroundGeolocation from "@mauron85/react-native-background-geolocation";
+import React, { useState, useEffect } from "react";
+import { Platform, Text, View, StyleSheet } from "react-native";
+import * as Location from "expo-location";
 
-class UseTracking extends Component {
-	componentDidMount() {
-		const [location, setLocation] = useState(defaultLocation);
-		const [history, setHistory] = useState < any > [];
-		const [distance, setDistance] = useState < number > 0;
+export default function UseTracking() {
+	const [location, setLocation] = useState(null);
+	const [errorMsg, setErrorMsg] = useState(null);
 
-		BackgroundGeolocation.configure({
-			desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
-			stationaryRadius: 50,
-			distanceFilter: 50,
-			notificationTitle: "Background tracking",
-			notificationText: "enabled",
-			//debug: true,
-			startOnBoot: false,
-			stopOnTerminate: true,
-			locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER, // DISTANCE_FILTER_PROVIDER for
-			interval: 10000,
-			fastestInterval: 5000,
-			activitiesInterval: 10000,
-			stopOnStillActivity: false,
-			url: "http://192.168.81.15:3000/location",
-			httpHeaders: {
-				"X-FOO": "bar",
-			},
-			// customize post properties
-			postTemplate: {
-				lat: "@latitude",
-				lon: "@longitude",
-				foo: "bar", // you can also add your own properties
-			},
-		});
-
-		BackgroundGeolocation.on("location", (location) => {
-			console.log("loc", location);
-			setLocation((prev) => ({
-				...prev,
-				latitude: location.latitude,
-
-				longitude: location.longitude,
-			}));
-
-			setHistory((prev) => {
-				setDistance((prevDistance) => {
-					if (prev.length === 0) {
-						return 0;
-					}
-					const latestItem = prev[prev.length - 1];
-					return (
-						prevDistance +
-						getDistanceFromLatLonInKm(
-							latestItem.latitude,
-							latestItem.longitude,
-							location.latitude,
-							location.longitude
-						)
-					);
-				});
-
-				return prev.concat({
-					latitude: location.latitude,
-					longitude: location.longitude,
-				});
-			});
-			// handle your locations here
-			// to perform long running operation on iOS
-			// you need to create background task
-			BackgroundGeolocation.startTask((taskKey) => {
-				// execute long running task
-				// eg. ajax post location
-				// IMPORTANT: task has to be ended by endTask
-				BackgroundGeolocation.endTask(taskKey);
-			});
-		});
-
-		BackgroundGeolocation.on("stationary", (stationaryLocation) => {
-			// handle stationary locations here
-		});
-
-		BackgroundGeolocation.on("error", (error) => {
-			//console.log('[ERROR] BackgroundGeolocation error:', error);
-		});
-
-		BackgroundGeolocation.on("start", () => {
-			//console.log('[INFO] BackgroundGeolocation service has been started');
-		});
-
-		BackgroundGeolocation.on("stop", () => {
-			//console.log('[INFO] BackgroundGeolocation service has been stopped');
-		});
-
-		BackgroundGeolocation.on("authorization", (status) => {
-			console.log(
-				"[INFO] BackgroundGeolocation authorization status: " + status
-			);
-			if (status !== BackgroundGeolocation.AUTHORIZED) {
-				// we need to set delay or otherwise alert may not be shown
-				setTimeout(
-					() =>
-						Alert.alert(
-							"App requires location tracking permission",
-							"Would you like to open app settings?",
-							[
-								{
-									text: "Yes",
-									onPress: () =>
-										BackgroundGeolocation.showAppSettings(),
-								},
-								{
-									text: "No",
-									onPress: () => console.log("No Pressed"),
-									style: "cancel",
-								},
-							]
-						),
-					1000
-				);
+	useEffect(() => {
+		(async () => {
+			let { status } = await Location.requestForegroundPermissionsAsync();
+			if (status !== "granted") {
+				setErrorMsg("Permission to access location was denied");
+				return;
 			}
-		});
 
-		BackgroundGeolocation.on("background", () => {
-			console.log("[INFO] App is in background");
-		});
+			let location = await Location.getCurrentPositionAsync({});
+			setLocation(location);
+		})();
+	}, []);
 
-		BackgroundGeolocation.on("foreground", () => {
-			console.log("[INFO] App is in foreground");
-		});
-
-		BackgroundGeolocation.checkStatus((status) => {
-			console.log(
-				"[INFO] BackgroundGeolocation service is running",
-				status.isRunning
-			);
-			console.log(
-				"[INFO] BackgroundGeolocation services enabled",
-				status.locationServicesEnabled
-			);
-			console.log(
-				"[INFO] BackgroundGeolocation auth status: " +
-					status.authorization
-			);
-
-			// you don't need to check status before start (this is just the example)
-			if (!status.isRunning) {
-				BackgroundGeolocation.start(); //triggers start on start event
-			}
-		});
-
-		// you can also just start without checking for status
-		// BackgroundGeolocation.start();
+	let text = "Waiting..";
+	if (errorMsg) {
+		text = errorMsg;
+	} else if (location) {
+		text = JSON.stringify(location);
 	}
 
-	componentWillUnmount() {
-		// unregister all event listeners
-		console.log("Removing all listeners");
-		BackgroundGeolocation.removeAllListeners();
-	}
+	return (
+		<View style={styles.container}>
+			<Text style={styles.paragraph}>{text}</Text>
+		</View>
+	);
 }
-
-export default UseTracking;
- */
+const styles = StyleSheet.create({});
