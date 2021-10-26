@@ -6,6 +6,9 @@ import {
 	Dimensions,
 	TouchableOpacity,
 } from "react-native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import MapView, { Callout, Circle, Marker } from "react-native-maps";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 
 import MapView, { Marker, ProviderPropType } from "react-native-maps";
 import Search from "./Search";
@@ -56,20 +59,57 @@ class Markers extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
+				<GooglePlacesAutocomplete
+					placeholder="Search"
+					fetchDetails={true}
+					GooglePlacesSearchQuery={{
+						rankby: "distance",
+					}}
+					onPress={(data, details = null) => {
+						// 'details' is provided when fetchDetails = true
+						console.log(data, details);
+						setRegion({
+							latitude: details.geometry.location.lat,
+							longitude: details.geometry.location.lng,
+							latitudeDelta: 0.0922,
+							longitudeDelta: 0.0421,
+						});
+					}}
+					query={{
+						key: GOOGLE_MAPS_APIKEY,
+						language: "en",
+					}}
+					styles={{
+						container: {
+							flex: 0,
+							position: "absolute",
+							width: "100%",
+							zIndex: 1,
+						},
+						listView: { backgroundColor: "white" },
+					}}
+					nearbyPlacesAPI="GooglePlacesSearch"
+				/>
 				<MapView
 					provider={this.props.provider}
 					style={styles.map}
 					initialRegion={this.state.region}
 					onPress={(e) => this.onMapPress(e)}
+					provider="google"
 				>
 					{this.state.markers.map((marker) => (
 						<Marker
 							key={marker.key}
 							coordinate={marker.coordinate}
 							pinColor={marker.color}
-						/>
+						>
+							<Callout>
+								<Text>I'm here</Text>
+							</Callout>
+						</Marker>
 					))}
 				</MapView>
+
 				{/* <Search /> */}
 				<View style={styles.buttonContainer}>
 					<TouchableOpacity

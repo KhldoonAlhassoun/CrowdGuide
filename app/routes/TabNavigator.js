@@ -33,7 +33,13 @@ const BottomTabNavigator = () => {
 				tabBarInactiveTintColor: "gray",
 			})}
 		>
-			<Tab.Screen name="Explore" component={ExploreStackNavigator} />
+			<Tab.Screen
+				options={{
+					headerShown: false,
+				}}
+				name="Explore"
+				component={ExploreStackNavigator}
+			/>
 			<Tab.Screen
 				name="Favourites"
 				component={FavouritesStackNavigator}

@@ -25,11 +25,5 @@ export default function UseTracking() {
 	} else if (location) {
 		text = JSON.stringify(location);
 	}
-
-	return (
-		<View style={styles.container}>
-			<Text style={styles.paragraph}>{text}</Text>
-		</View>
-	);
 }
 const styles = StyleSheet.create({});
