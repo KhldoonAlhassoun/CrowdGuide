@@ -1,11 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Dimensions, Text } from "react-native";
+import {
+	StyleSheet,
+	View,
+	Dimensions,
+	Text,
+	TouchableOpacity,
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import MapView, { Callout, Circle, Marker } from "react-native-maps";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import InfoScreen from "./InfoScreen";
+import Disclaimer from "../components/Disclaimer";
+import { render } from "react-dom";
 
-export default function ExploreScreen() {
+export default function ExploreScreen({ navigation }) {
 	const [pin, setPin] = React.useState({
 		latitude: 63.81326,
 		longitude: 20.31651,
@@ -13,8 +21,12 @@ export default function ExploreScreen() {
 
 	const [region, setRegion] = React.useState(null);
 
+	function handleInfoScreen() {
+		return <InfoScreen />;
+	}
 	return (
 		<View style={{}}>
+			<Disclaimer />
 			<GooglePlacesAutocomplete
 				placeholder="Search Places"
 				fetchDetails={true}
@@ -48,7 +60,7 @@ export default function ExploreScreen() {
 				}}
 				nearbyPlacesAPI="GooglePlacesSearch"
 			/>
-			
+
 			<MapView
 				style={styles.map}
 				initialRegion={{
@@ -99,15 +111,22 @@ export default function ExploreScreen() {
 				) : null}
 
 				{region ? (
-					<Marker
-						coordinate={{
-							latitude: region.latitude,
-							longitude: region.longitude,
+					<TouchableOpacity>
+						<View>
+							<Marker
+								coordinate={{
+									latitude: region.latitude,
+									longitude: region.longitude,
+								}}
+							></Marker>
+						</View>
+						onPress=
+						{() => {
+							handleInfoScreen();
 						}}
-					/>
+					</TouchableOpacity>
 				) : null}
 			</MapView>
-			
 		</View>
 	);
 }

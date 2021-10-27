@@ -9,7 +9,7 @@ import Settings from "../screens/Settings";
 import RateUs from "../screens/RateUs";
 import ExploreScreen from "../screens/ExploreScreen";
 import Favourites from "../screens/Favourites";
-
+import InfoScreen from "../screens/InfoScreen";
 const Stack = createStackNavigator();
 
 const MoreStackNavigator = () => {
@@ -36,6 +36,7 @@ const ExploreStackNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Explore" component={ExploreScreen} />
+			<Stack.Screen name="InfoScreen" component={InfoScreen} />
 		</Stack.Navigator>
 	);
 };
