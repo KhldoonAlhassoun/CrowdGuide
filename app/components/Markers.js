@@ -12,6 +12,7 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 
 import MapView, { Marker, ProviderPropType } from "react-native-maps";
 import Search from "./Search";
+import InfoScreen from "../screens/InfoScreen";
 
 const { width, height } = Dimensions.get("window");
 
@@ -108,8 +109,10 @@ class Markers extends React.Component {
 							</Callout>
 						</Marker>
 					))}
+				
 				</MapView>
-
+				
+				
 				{/* <Search /> */}
 				<View style={styles.buttonContainer}>
 					<TouchableOpacity
@@ -119,6 +122,10 @@ class Markers extends React.Component {
 						<Text>Tap map to create a marker of random color</Text>
 					</TouchableOpacity>
 				</View>
+
+				<
+
+				
 			</View>
 		);
 	}

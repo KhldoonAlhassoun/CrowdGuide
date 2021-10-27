@@ -3,6 +3,7 @@ import { StyleSheet, View, Dimensions, Text } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import MapView, { Callout, Circle, Marker } from "react-native-maps";
 import { GOOGLE_MAPS_APIKEY } from "@env";
+import InfoScreen from "./InfoScreen";
 
 export default function ExploreScreen() {
 	const [pin, setPin] = React.useState({
@@ -47,6 +48,7 @@ export default function ExploreScreen() {
 				}}
 				nearbyPlacesAPI="GooglePlacesSearch"
 			/>
+			
 			<MapView
 				style={styles.map}
 				initialRegion={{
@@ -105,6 +107,7 @@ export default function ExploreScreen() {
 					/>
 				) : null}
 			</MapView>
+			
 		</View>
 	);
 }
