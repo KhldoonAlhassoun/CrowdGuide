@@ -118,12 +118,12 @@ export default function ExploreScreen({ navigation }) {
 									latitude: region.latitude,
 									longitude: region.longitude,
 								}}
-							></Marker>
+							>
+								<Callout>
+									<InfoScreen />
+								</Callout>
+							</Marker>
 						</View>
-						onPress=
-						{() => {
-							handleInfoScreen();
-						}}
 					</TouchableOpacity>
 				) : null}
 			</MapView>
